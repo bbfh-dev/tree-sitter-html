@@ -56,6 +56,7 @@ module.exports = grammar({
         repeat($._node),
         choice($.end_tag, $._implicit_end_tag),
       ),
+      $.w3_tag,
       $.self_closing_tag,
     ),
 
@@ -126,16 +127,54 @@ module.exports = grammar({
 
     attribute_value: _ => /[^<>"'=\s]+/,
 
+    w3_tag: $ => seq(
+      "{{",
+      optional($.w3_name),
+      repeat(choice(
+        $.w3_number,
+        $.w3_tag_path,
+        $.w3_operation,
+        $.w3_string,
+      )),
+      "}}"),
+
+    w3_name: _ => /\/?[a-z0-9]+/,
+
+    w3_number: _ => /[0-9]+/,
+
+    w3_tag_path: _ => /[a-zA-Z0-9_\.\(\)]+/,
+
+    w3_operation: _ => choice("==", "!=", ">=", "<=", ">", "<", "&&", "||"),
+
+    w3_string: _ => choice(
+      seq("'", /[^']+/, "'"),
+      seq("\"", /[^"]+/, "\""),
+      seq("`", /[^`]+/, "`"),
+    ),
+
     // An entity can be named, numeric (decimal), or numeric (hexacecimal). The
     // longest entity name is 29 characters long, and the HTML spec says that
     // no more will ever be added.
     entity: _ => /&(#([xX][0-9a-fA-F]{1,6}|[0-9]{1,5})|[A-Za-z]{1,30});?/,
 
     quoted_attribute_value: $ => choice(
-      seq('\'', optional(alias(/[^']+/, $.attribute_value)), '\''),
-      seq('"', optional(alias(/[^"]+/, $.attribute_value)), '"'),
+      seq(
+        '\'',
+        optional(choice(
+          alias(/[^'{]+/, $.attribute_value),
+          $.w3_tag,
+        )),
+        '\''),
+      seq(
+        '"',
+        optional(choice(
+          alias(/[^"{]+/, $.attribute_value),
+          $.w3_tag,
+        )),
+        '"'
+      ),
     ),
 
-    text: _ => /[^<>&\s]([^<>&]*[^<>&\s])?/,
+    text: _ => /[^<>&\s\{]([^<>&]*[^<>&\s])?/,
   },
 });
