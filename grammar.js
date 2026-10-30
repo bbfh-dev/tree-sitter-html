@@ -144,7 +144,7 @@ module.exports = grammar({
 
     w3_tag_path: _ => /[a-zA-Z0-9_\.\(\)]+/,
 
-    w3_operation: _ => choice("==", "!=", ">=", "<=", ">", "<", "&&", "||"),
+    w3_operation: _ => choice("==", "!=", ">=", "<=", ">", "<", "&&", "||", "="),
 
     w3_string: _ => choice(
       seq("'", /[^']+/, "'"),

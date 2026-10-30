@@ -92,3 +92,10 @@ test:
 	$(TS) test
 
 .PHONY: all install uninstall clean test
+
+compile_linux:
+	gcc -O2 -fPIC -shared \
+	-Isrc \
+	src/parser.c \
+	src/scanner.c \
+	-o html.so

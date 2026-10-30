@@ -551,7 +551,7 @@ W3 tag
 
 <div>
 {{ if .Value == 123 && .Something.Else() != `example string` }}
-    <span>Hello World!</span>
+    <span>{{ include path=`123` }}</span>
 {{ /if }}
 </div>
 
