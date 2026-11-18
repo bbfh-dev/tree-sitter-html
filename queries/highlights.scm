@@ -16,7 +16,10 @@
 ] @punctuation.bracket
 
 (w3_tag) @punctuation.special
-(w3_name) @keyword
+[
+  (w3_name)
+  (w3_slash)
+] @keyword
 (w3_tag_path) @method
 (w3_number) @constant.builtin
 (w3_operation) @keyword.operator

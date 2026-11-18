@@ -56,6 +56,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "text_not_tag"
+        },
+        {
+          "type": "SYMBOL",
           "name": "element"
         },
         {
@@ -388,6 +392,18 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "w3_slash"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
               "name": "w3_name"
             },
             {
@@ -425,9 +441,13 @@
         }
       ]
     },
+    "w3_slash": {
+      "type": "PATTERN",
+      "value": "\\/"
+    },
     "w3_name": {
       "type": "PATTERN",
-      "value": "\\/?[a-z0-9]+"
+      "value": "[a-z0-9]+"
     },
     "w3_number": {
       "type": "PATTERN",
@@ -623,7 +643,11 @@
     },
     "text": {
       "type": "PATTERN",
-      "value": "[^<>&\\s\\{]([^<>&]*[^<>&\\s])?"
+      "value": "[^<>&\\s\\{]([^<>&\\{]*[^<>&\\s\\{])?"
+    },
+    "text_not_tag": {
+      "type": "PATTERN",
+      "value": "\\{[^\\{]"
     }
   },
   "extras": [

@@ -574,11 +574,36 @@ W3 tag
     (element
       (start_tag
         (tag_name))
-      (text)
+      (element
+        (w3_tag
+          (w3_name)
+          (w3_tag_path)
+          (w3_operation)
+          (w3_string)))
       (end_tag
         (tag_name)))
     (element
       (w3_tag
+        (w3_slash)
         (w3_name)))
+    (end_tag
+      (tag_name))))
+
+==================================
+W3 not a tag
+==================================
+
+<div>
+    { hello world! }
+</div>
+
+---
+
+(document
+  (element
+    (start_tag
+      (tag_name))
+    (text_not_tag)
+    (text)
     (end_tag
       (tag_name))))

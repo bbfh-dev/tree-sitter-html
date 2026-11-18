@@ -63,6 +63,10 @@
         {
           "type": "text",
           "named": true
+        },
+        {
+          "type": "text_not_tag",
+          "named": true
         }
       ]
     }
@@ -113,6 +117,10 @@
         },
         {
           "type": "text",
+          "named": true
+        },
+        {
+          "type": "text_not_tag",
           "named": true
         },
         {
@@ -286,6 +294,10 @@
           "named": true
         },
         {
+          "type": "w3_slash",
+          "named": true
+        },
+        {
           "type": "w3_string",
           "named": true
         },
@@ -390,11 +402,19 @@
     "named": true
   },
   {
+    "type": "text_not_tag",
+    "named": true
+  },
+  {
     "type": "w3_name",
     "named": true
   },
   {
     "type": "w3_number",
+    "named": true
+  },
+  {
+    "type": "w3_slash",
     "named": true
   },
   {
