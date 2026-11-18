@@ -99,3 +99,10 @@ compile_linux:
 	src/parser.c \
 	src/scanner.c \
 	-o html.so
+
+install_nvim: compile_linux
+	mv ./html.so ~/.local/share/nvim/site/parser/html.so
+	cp ./queries/highlights.scm ~/.local/share/nvim/site/queries/html/highlights.scm
+	cp ./queries/indents.scm ~/.local/share/nvim/site/queries/html/indents.scm
+
+.PHONY: compile_linux install_nvim
